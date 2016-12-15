@@ -1,0 +1,28 @@
+<div class="blog-header">
+    <div class="row">
+        <div class="col-md-8">
+          <div class="blog-title">
+              <%= @article.title %>
+          </div>
+          <h3>
+              Author: <%= @article.user.email.split('@')[0].capitalize %>
+          </h3> 
+            <p>
+              <%= @article.text %>
+            </p>
+            <hr>
+            <% if current_user == @article.user %>
+            <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-warning' %>
+            <%= link_to 'Destroy', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            <% end %>
+        </div>
+        <div class="col-md-4">
+            <h2>Comments</h2>
+            <%= render @article.comments %>
+            <% if user_signed_in? %>
+            <h2>Add a comment:</h2>
+            <%= render 'comments/form' %>
+            <% end %>
+        </div>
+    </div>
+</div>

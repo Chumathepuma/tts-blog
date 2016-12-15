@@ -1,0 +1,20 @@
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <%= link_to 'Home', root_path, class: "blog-nav-item #{ 'active' if current_page? root_path }" %>
+      <%= link_to 'Articles', articles_path, class: "blog-nav-item #{ 'active' if current_page? articles_path }" %>
+      <% if user_signed_in? %>
+      <%= link_to 'New Article', new_article_path, class: "blog-nav-item #{ 'active' if current_page? new_article_path }" %>
+      <% end %>
+      <div class="pull-right">
+      <% if user_signed_in? %>
+        <%= link_to "Edit profile", edit_user_registration_path, class: 'blog-nav-item' %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'blog-nav-item'  %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'blog-nav-item'  %>
+        <%= link_to "Login", new_user_session_path, class: 'blog-nav-item'  %>
+      <% end %>
+      </div>
+    </nav>
+  </div>
+</div>

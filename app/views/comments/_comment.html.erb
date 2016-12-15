@@ -1,0 +1,17 @@
+<p>
+  <strong><%= comment.user.email.split('@')[0].capitalize %>:</strong>
+  <%= comment.body %>
+</p>
+<% if current_user == comment.user %>
+
+<p>
+    <!-- Notice how we pass in the id's as an array as opposed to the long way
+    of writing article_comment_path([comment.article, comment]) so we know that
+    the path helper method can be omitted and simple pass in its arguments -->
+  <%= link_to 'Destroy Comment', [comment.article, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' },
+               class: 'btn btn-sm btn-danger' %>
+</p>
+<%end%>
+<hr>
