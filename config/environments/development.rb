@@ -53,4 +53,15 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # config action mailer url options for devise 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # paperclip aws configuration
+config.paperclip_defaults = {
+  storage: :s3,
+  s3_region: ENV["AWS_REGION"],
+  s3_credentials: {
+    s3_host_name: ENV["AWS_HOST_NAME"],
+    bucket: ENV["S3_BUCKET_NAME"],
+    access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+    secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+  }
+}
 end
